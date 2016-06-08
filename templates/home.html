@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>红包</title>
+</head>
+<body>
+
+
+<h1>红包列表</h1>
+
+
+<table border="1">
+
+    <tr>
+    <td>ID</td>
+    <td>总额</td>
+    <td>数量</td>
+    <td>分包数</td>
+    <td>设置</td>
+    </tr>
+{% for lm in luck_money %}
+        <tr>
+    <td>{{ lm.id }}</td>
+    <td>{{ lm.total_amount }}</td>
+    <td>{{ lm.quantity }}</td>
+    <td><a href="{% url 'quota' lm.id %}">{{ lm.quota_count }}</a></td>
+    <td></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

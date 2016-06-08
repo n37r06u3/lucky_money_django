@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>ID: {{ lm.id }}</p>
+    <td></td>
+
+
+    <p>总金额: {{ lm.total_amount }}</p>
+    <p>
+       数量: {{ lm.quantity }}
+    </p>
+    <p>
+         分包数量: {{ lm.quota_count }}
+    </p>
+    <p>
+        已用分配金额: {{ lm.amount_sum.amount__sum }}
+    </p>
+        <p>
+        未分配金额: {{  lm.amount_rest }}
+    </p>
+<h3>生成大额分包</h3>
+<form action="{% url 'generate_one' pk%}" method="post">
+{% csrf_token %}
+    金额<input type="text"  name="amount">
+    <input type="submit">
+    
+</form>
+<h3>生成剩余分包</h3>
+<form action="{% url 'generate_all' pk %}"  method="post">
+    {% csrf_token %}
+    <input type="submit">
+</form>
+
+<table border="1">
+    <tr>
+    <td>金额</td>
+    <td>是否领用</td>
+    </tr>
+{% for lmq in luck_money_quota %}
+        <tr>
+    <td>{{ lmq.amount }}</td>
+    <td>{{ lmq.is_used }}</td>
+
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

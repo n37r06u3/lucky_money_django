@@ -8,7 +8,15 @@
 
 
 <h1>红包列表</h1>
+<h3>创建红包</h3>
 
+<form action="{% url 'generate'%}" method="post">
+{% csrf_token %}
+    总金额:<input type="text"  name="total_amount">
+    数量:<input type="text"  name="quantity">
+    单个大额红包:<input type="text"  name="one_amount">
+    <input type="submit">
+</form>
 
 <table border="1">
 
@@ -16,16 +24,16 @@
     <td>ID</td>
     <td>总额</td>
     <td>数量</td>
-    <td>分包数</td>
-    <td>设置</td>
+    <td>分包数量</td>
+    <td>已经领取数量</td>
     </tr>
 {% for lm in luck_money %}
         <tr>
     <td>{{ lm.id }}</td>
     <td>{{ lm.total_amount }}</td>
     <td>{{ lm.quantity }}</td>
-    <td><a href="{% url 'quota' lm.id %}">{{ lm.quota_count }}</a></td>
-    <td></td>
+    <td>{{ lm.quota_count }}</td>
+    <td><a href="{% url 'quota' lm.id %}">{{ lm.receive_count }}</a></td>
         </tr>
     {% endfor %}
 </table>

@@ -19,7 +19,9 @@ from lucky_money import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 url(r'^$', views.home, name='home'),
-url(r'^quota/(?P<pk>\d+)/$', views.quota, name='quota'),
+url(r'^(?P<pk>\d+)/quota/$', views.quota, name='quota'),
+url(r'^quota//(?P<pk>\d+)/receive$', views.receive, name='receive'),
+url(r'^generate$', views.generate, name='generate'),
 url(r'^generate_one/(?P<pk>\d+)/$', views.generate_one, name='generate_one'),
 url(r'^generate_all/(?P<pk>\d+)/$', views.generate_all, name='generate_all'),
 ]
